@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>备忘录工具</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-sticky-note"></i> 备忘录</h1>
+            <div class="search-bar">
+                <i class="fas fa-search"></i>
+                <input type="text" id="searchInput" placeholder="搜索备忘录...">
+            </div>
+        </header>
+
+        <div class="controls">
+            <button class="btn btn-primary" onclick="showAddModal()">
+                <i class="fas fa-plus"></i> 新建备忘录
+            </button>
+            <select id="categoryFilter" onchange="filterNotes()">
+                <option value="all">全部分类</option>
+                <option value="work">工作</option>
+                <option value="personal">个人</option>
+                <option value="study">学习</option>
+                <option value="other">其他</option>
+            </select>
+            <button class="btn btn-secondary" onclick="toggleView()">
+                <i class="fas fa-th-large"></i> 切换视图
+            </button>
+        </div>
+
+        <div class="notes-container" id="notesContainer">
+            <!-- 备忘录将在这里动态生成 -->
+        </div>
+
+        <!-- 添加/编辑备忘录的模态框 -->
+        <div id="noteModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeModal()">&times;</span>
+                <h2 id="modalTitle">新建备忘录</h2>
+                <form id="noteForm">
+                    <div class="form-group">
+                        <label for="noteTitle">标题</label>
+                        <input type="text" id="noteTitle" required maxlength="50">
+                    </div>
+                    <div class="form-group">
+                        <label for="noteContent">内容</label>
+                        <textarea id="noteContent" rows="5" required maxlength="500"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="noteCategory">分类</label>
+                        <select id="noteCategory">
+                            <option value="work">工作</option>
+                            <option value="personal">个人</option>
+                            <option value="study">学习</option>
+                            <option value="other">其他</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="noteColor">颜色</label>
+                        <div class="color-picker">
+                            <input type="radio" name="color" value="#fff740" id="color1" checked>
+                            <label for="color1" style="background-color: #fff740;"></label>
+                            <input type="radio" name="color" value="#ffd23f" id="color2">
+                            <label for="color2" style="background-color: #ffd23f;"></label>
+                            <input type="radio" name="color" value="#ff9a8b" id="color3">
+                            <label for="color3" style="background-color: #ff9a8b;"></label>
+                            <input type="radio" name="color" value="#a8e6cf" id="color4">
+                            <label for="color4" style="background-color: #a8e6cf;"></label>
+                            <input type="radio" name="color" value="#dcedc1" id="color5">
+                            <label for="color5" style="background-color: #dcedc1;"></label>
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-save"></i> 保存
+                        </button>
+                        <button type="button" class="btn btn-secondary" onclick="closeModal()">
+                            <i class="fas fa-times"></i> 取消
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
